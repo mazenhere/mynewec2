@@ -1,4 +1,6 @@
 FROM ubuntu:latest
+ENV tz=Asia/Dubai
+RUN ln -snf /usr/share/zoneinfo/$TZ etc/localtime && echo $ TZ > /etc/timezone
 RUN apt-get update
 RUN apt-get install -y apache2
 RUN rm /var/www/html/index.html
