@@ -4,20 +4,20 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin AWS_account.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/a9v8q2x1
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t test .
-      - docker tag test:latest AWS_account.dkr.ecr.us-east-1.amazonaws.com/test:latest
+      - docker build -t mydemohere .
+      - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
       
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push AWS_account.dkr.ecr.us-east-1.amazonaws.com/test:latest
-      - printf '[{"name":"test","imageUri":"AWS_account.dkr.ecr.us-east-1.amazonaws.com/test:latest"}]' > imagedefinitions.json
+      - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
+      - printf '[{"name":"test","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
