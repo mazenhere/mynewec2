@@ -10,7 +10,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t myrepo .
-      - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
+      - docker tag myrepo:latest public.ecr.aws/a9v8q2x1/myrepo:latest
       
   post_build:
     commands:
