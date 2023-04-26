@@ -15,8 +15,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker tag myrepo:latest public.ecr.aws/a9v8q2x1/myrepo:latest
+      - docker push public.ecr.aws/a9v8q2x1/myrepo:latest
       - printf '[{"name":"latest","imageUri":"public.ecr.aws/a9v8q2x1/myrepo"}]' > imagedefinitions.json
 artifacts:
   files:
