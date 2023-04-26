@@ -9,15 +9,15 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build -t mydemohere .
+      - docker build -t myrepo .
       - docker tag mydemohere:latest public.ecr.aws/a9v8q2x1/mydemohere:latest
       
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push public.ecr.aws/a9v8q2x1/mydemohere:latest
-      - printf '[{"name":"test","imageUri":"public.ecr.aws/a9v8q2x1/mydemohere:latest"}]' > imagedefinitions.json
+      - docker tag myrepo:latest public.ecr.aws/a9v8q2x1/myrepo:latest
+      - printf '[{"name":"latest","imageUri":"public.ecr.aws/a9v8q2x1/myrepo"}]' > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
